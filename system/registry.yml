@@ -1,0 +1,67 @@
+version: "1.0"
+
+repository:
+  name: ai-skills
+  owner: rickypablo2005
+  source_of_truth: skills/
+
+skills:
+  backend:
+    trigger: "@backend"
+    path: "skills/backend/SKILL.md"
+    priority: 60
+    description: "Backend, REST APIs, Postgres and Supabase database practices."
+    workflows:
+      - id: supabase-postgres-best-practices
+        aliases: ["@supabase-postgres", "@postgres"]
+      - id: api-endpoint-builder
+        aliases: ["@api", "@endpoint", "@rest"]
+
+  discovery:
+    trigger: "@discovery"
+    path: "skills/discovery/SKILL.md"
+    priority: 70
+    description: "Discover and evaluate installable agent skills."
+    workflows:
+      - id: find-skills
+        aliases: ["@find-skills"]
+
+  frontend:
+    trigger: "@frontend"
+    path: "skills/frontend/SKILL.md"
+    priority: 60
+    description: "Frontend API integration, Lighthouse, redesign, animation review and visual design routing."
+    workflows:
+      - id: frontend-api-integration-patterns
+        aliases: ["@frontend-api"]
+      - id: frontend-lighthouse
+        aliases: ["@lighthouse"]
+      - id: redesign-existing-projects
+        aliases: ["@redesign"]
+      - id: review-animations
+        aliases: ["@animations"]
+      - id: design-it
+        aliases: ["@design"]
+
+  quality:
+    trigger: "@quality"
+    path: "skills/quality/SKILL.md"
+    priority: 20
+    description: "Bug hunting, diagnosis, performance optimization, TDD and triage."
+    workflows:
+      - id: bug-hunter
+        aliases: ["@bug-hunter", "@bug"]
+      - id: diagnosing-bugs
+        aliases: ["@debug", "@diagnose"]
+      - id: performance-optimizer
+        aliases: ["@performance"]
+      - id: tdd
+        aliases: ["@tdd"]
+      - id: triage
+        aliases: ["@triage"]
+
+rules:
+  preserve_skill_source: true
+  do_not_silently_rewrite_skills: true
+  missing_references_are_errors: true
+  validation_required_before_done: true
