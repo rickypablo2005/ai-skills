@@ -1,0 +1,30 @@
+version: "1.0"
+
+priority:
+  1:
+    name: "Safety, security and explicit user constraints"
+    rule: "Never violate a security constraint or an explicit user boundary to satisfy a lower-priority instruction."
+  2:
+    name: "Evidence and validation"
+    rule: "Claims about correctness, fixes, performance or completion require appropriate verification."
+  3:
+    name: "Quality workflows"
+    rule: "Debugging, testing, performance and triage procedures must be followed when their intent is active."
+  4:
+    name: "Architecture and existing project constraints"
+    rule: "Preserve the existing stack and architecture unless the task explicitly authorizes a change."
+  5:
+    name: "Specific workflow skill"
+    rule: "Use the most specific registered workflow that matches the task."
+  6:
+    name: "General domain skill"
+    rule: "Use the parent domain skill when no more specific workflow applies."
+  7:
+    name: "Style and convenience"
+    rule: "Formatting and convenience never override correctness, security or validation."
+
+conflicts:
+  preserve_original_skill_text: true
+  resolve_by_priority: true
+  report_unresolvable_conflicts: true
+  do_not_merge_conflicting_rules_into_a_new_rule: true
