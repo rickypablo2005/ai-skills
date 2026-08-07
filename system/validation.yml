@@ -1,0 +1,38 @@
+version: "1.0"
+
+validation:
+  required: true
+
+  universal:
+    - "Identify what was changed or concluded."
+    - "Run the most relevant available validation for the task."
+    - "Do not claim a test, command, build, deployment or review was executed unless it actually was."
+    - "Check edge cases relevant to the change."
+    - "Report failures and unresolved uncertainty explicitly."
+
+  debugging:
+    - "Reproduce or establish a reliable failure signal."
+    - "Gather evidence before claiming a root cause."
+    - "Fix the root cause rather than hiding the symptom."
+    - "Re-run the original failure signal after the fix."
+    - "Add regression coverage when appropriate."
+
+  performance:
+    - "Measure before optimization when measurement is possible."
+    - "Identify the actual bottleneck."
+    - "Measure again after the change."
+    - "Report the before/after evidence."
+
+  frontend:
+    - "Validate behavior and responsive states relevant to the change."
+    - "Check loading, empty, error and interaction states when applicable."
+    - "Check accessibility and reduced-motion requirements when applicable."
+
+  backend:
+    - "Validate input, authorization and error paths."
+    - "Check database constraints, indexes and RLS when applicable."
+    - "Do not expose secrets or sensitive data."
+
+  missing_reference:
+    condition: "A skill explicitly requires a referenced file that is absent from this repository or project."
+    action: "Stop the dependent step and report the missing reference. Do not invent its contents."
