@@ -1,0 +1,62 @@
+version: "1.0"
+
+routing:
+  direct_trigger_first: true
+  broad_trigger_fallback: true
+  allow_multiple_skills: true
+  require_validation: true
+
+  intent_rules:
+    - intent: debugging
+      keywords: ["bug", "erro", "error", "quebrou", "debug", "falha", "regressão", "broken", "failing"]
+      primary: "quality.diagnosing-bugs"
+      secondary: ["quality.bug-hunter"]
+
+    - intent: performance
+      keywords: ["performance", "lento", "slow", "otimizar", "latência", "Lighthouse", "Core Web Vitals"]
+      primary: "quality.performance-optimizer"
+      secondary: ["frontend.frontend-lighthouse", "backend.supabase-postgres-best-practices"]
+
+    - intent: frontend-design
+      keywords: ["UI", "UX", "design", "interface", "layout", "redesign", "visual"]
+      primary: "frontend.design-it"
+      secondary: ["frontend.redesign-existing-projects"]
+
+    - intent: frontend-api
+      keywords: ["frontend API", "fetch", "AbortController", "race condition", "retry", "request"]
+      primary: "frontend.frontend-api-integration-patterns"
+
+    - intent: animation-review
+      keywords: ["animation", "animação", "motion", "transition", "Framer Motion", "keyframes"]
+      primary: "frontend.review-animations"
+
+    - intent: backend-api
+      keywords: ["API", "endpoint", "REST", "route", "CRUD"]
+      primary: "backend.api-endpoint-builder"
+
+    - intent: database
+      keywords: ["Postgres", "PostgreSQL", "Supabase", "SQL", "schema", "RLS", "index", "query"]
+      primary: "backend.supabase-postgres-best-practices"
+
+    - intent: testing
+      keywords: ["TDD", "test-first", "teste", "tests", "unit test", "integration test"]
+      primary: "quality.tdd"
+
+    - intent: triage
+      keywords: ["triage", "issue", "issues", "PR", "pull request", "priorizar"]
+      primary: "quality.triage"
+
+  composition:
+    examples:
+      - request: "@backend @quality"
+        order: ["backend", "quality"]
+      - request: "@frontend @quality"
+        order: ["frontend", "quality"]
+      - request: "@backend @quality @frontend"
+        order: ["backend", "frontend", "quality"]
+
+  resolution:
+    explicit_alias_beats_keyword_detection: true
+    specific_workflow_beats_parent_skill: true
+    security_and_validation_constraints_override_convenience: true
+    never_invent_missing_reference_files: true
